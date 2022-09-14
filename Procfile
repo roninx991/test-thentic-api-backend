@@ -1,1 +1,1 @@
-web: ts-node index.ts | bunyan
+web: npm start
