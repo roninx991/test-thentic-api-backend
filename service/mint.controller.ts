@@ -9,13 +9,13 @@ export const mint = async (request: Request, response: Response) => {
     let thenticAPIResponse = await axios.post(
         "https://thentic.tech/api/nfts/mint",
         {
-            "key": "Tok8mndFDF4hd4Wlx2XmUWs9atR0gze5",
+            "key": process.env.THENTIC_API_KEY,
             "chain_id": 97,
-            "contract": "0xf9f98608f3d7096a90a5d1c751c4c6754e45ed70",
+            "contract": process.env.THNETIC_NFT_CONTRACT,
             "nft_id": newNftId,
             "nft_data": JSON.stringify({ name: request.body.name, image: request.body.image }),
             "redirect_url": request.body.redirectUri,
-            "to": "0x17b135575639A9B55F7EBb74FbED5f727eD08E8a"
+            "to": request.body.address
         },
         {
             headers: {
@@ -30,7 +30,7 @@ export const mint = async (request: Request, response: Response) => {
 
 export const view = async (request: Request, response: Response) => {
     let thenticAPIResponse = await axios.get(
-        "https://thentic.tech/api/nfts?key=Tok8mndFDF4hd4Wlx2XmUWs9atR0gze5&chain_id=97",
+        "https://thentic.tech/api/nfts?key=dQMY0vghEGcL612pW1cg5ZlJPeBHQI6H&chain_id=97",
         {
             headers: {
                 "Content-Type": "application/json"
