@@ -3,11 +3,11 @@ import * as dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-import passport from "passport";
 import bodyParser from "body-parser";
 
 /** Required App Modules */
-import Logger from "./config/logger";
+import logger from "./config/logger";
+import { mint, view } from './service/mint.controller';
 
 dotenv.config();
 
@@ -25,10 +25,11 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(passport.initialize());
-app.use(passport.session());
+
+app.post("/mint/", (req, res) => mint(req, res));
+app.get("/view", (req, res) => view(req, res));
 
 /** Server Activation */
 app.listen(PORT, () => {
-  Logger.info(`Listening on port ${PORT}`);
+  logger.info(`Listening on port ${PORT}`);
 });
