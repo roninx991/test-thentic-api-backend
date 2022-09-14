@@ -37,5 +37,6 @@ export const view = async (request: Request, response: Response) => {
             }
         }
     )
+    await setNFTID(thenticAPIResponse.data.nfts.length);
     response.json(thenticAPIResponse.data);
 }
